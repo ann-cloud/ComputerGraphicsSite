@@ -1,0 +1,105 @@
+function drawCoordinates(scale) {
+    const canvas = document.getElementById('moving-img');
+    const ctx = canvas.getContext('2d');
+    
+    const width = canvas.width;
+    const height = canvas.height;
+    const centerX = width / 2;
+    const centerY = height / 2;
+    
+    const unit = 25; // базовий крок для scale = 1
+    const maxUnit = 250; // крок для scale = 100
+    const step = unit + (maxUnit - unit) * ((scale - 1) / (100 - 1)); // лінійний перехід від unit до maxUnit
+
+    // Очищуємо канву
+    ctx.clearRect(0, 0, width, height);
+
+    // Встановлюємо стилі для сітки
+    ctx.strokeStyle = '#a0a0a0';
+    ctx.lineWidth = 1;
+    
+    // Малюємо вертикальні лінії сітки
+    for (let x = centerX; x <= width; x += step) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+        if (x !== centerX) { // Для ліній зліва від центру
+            ctx.beginPath();
+            ctx.moveTo(2 * centerX - x, 0);
+            ctx.lineTo(2 * centerX - x, height);
+            ctx.stroke();
+        }
+    }
+    
+    // Малюємо горизонтальні лінії сітки
+    for (let y = centerY; y <= height; y += step) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+        if (y !== centerY) { // Для ліній зверху від центру
+            ctx.beginPath();
+            ctx.moveTo(0, 2 * centerY - y);
+            ctx.lineTo(width, 2 * centerY - y);
+            ctx.stroke();
+        }
+    }
+    
+    // Встановлюємо стилі для осей
+    ctx.strokeStyle = '#000000';
+    ctx.lineWidth = 2;
+    
+    // Малюємо осі
+    ctx.beginPath();
+    ctx.moveTo(centerX, 0);
+    ctx.lineTo(centerX, height);
+    ctx.moveTo(0, centerY);
+    ctx.lineTo(width, centerY);
+    ctx.stroke();
+
+    // Встановлюємо стилі для тексту
+    ctx.fillStyle = '#000000';
+    ctx.font = '10px Arial';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    const numberOfDivisions = (centerX / step); // Кількість поділок від центру до краю
+
+    // Отримуємо максимальне значення підпису залежно від ширини канви і кроку
+    const maxLabelValue = Math.round(centerX / step);
+
+    // Додаємо підписи до поділок на осі X
+    for (let i = -maxLabelValue; i <= maxLabelValue; i++) {
+        let posX = centerX + i * step;
+        // Переконуємось, що підпис не накладається на ось Y
+        if (posX !== centerX) {
+            ctx.fillText(i.toString(), posX, centerY + 15);
+        }
+    }
+    // Отримуємо максимальне значення підпису залежно від висоти канви і кроку
+    const maxLabelValueY = Math.round(centerY / step);
+
+    // Додаємо підписи до поділок на осі Y
+    for (let i = -maxLabelValueY; i <= maxLabelValueY; i++) {
+        let posY = centerY - i * step;
+        // Переконуємось, що підпис не накладається на ось X
+        if (posY !== centerY) {
+            ctx.fillText(i.toString(), centerX - 15, posY);
+        }
+    }
+
+
+    ctx.font = 'bold 15px Arial';
+    // Підписуємо осі
+    ctx.fillText('X', width - 10, centerY - 10);
+    ctx.fillText('Y', centerX + 10, 10);
+}
+
+// Приклад виклику функції з масштабом 1
+drawCoordinates(1);
+
+document.getElementById("scaleImage").addEventListener('input', function() {
+    var scaleValue = parseFloat(document.getElementById("scaleImage").value);
+    drawCoordinates(scaleValue);
+});

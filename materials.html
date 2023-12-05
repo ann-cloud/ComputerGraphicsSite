@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Computer Graphics</title>
+    <link rel="shortcut icon" type="image/png" href="img/icon.png">
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+    <link href="css/ComputerGraphics.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+    
+    <!-- Topbar -->
+    <nav class="navbar">
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="d-flex align-items-center justify-content-left">
+            <div id="menu-button">
+                <img  id="sidebarToggle" src="img/menu.png" alt="menu-icon">
+            </div>
+            <a href="index.html">
+                <div class="d-flex flex-row align-items-center">
+                    <img class="pl-4" src="img/icon.png" alt="icon">
+                    <span>Computer Graphics</span>
+                </div>
+            </a>
+        </div>
+        <!-- Topbar Navbar -->
+        <ul class="navbar-nav ml-auto">
+
+        </ul>
+    </nav>
+    <!-- End of Topbar -->
+
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav  sidebar  accordion" id="accordionSidebar">
+
+            <!-- Nav Item - Main -->
+            <li class="nav-item">
+                <a class="nav-link pb-2" href="index.html">
+                    <div class="d-flex align-items-center justify-content-left" style="background-color: #028090; color: white;">
+                        <img src="img/home2.png" alt="home-icon">
+                        <span>Main</span>
+                    </div>
+                </a>
+            </li>
+
+            <!-- Nav Item - Fractals -->
+            <li class="nav-item">
+                <a class="nav-link pt-2 pb-2" href="pageFractal.html">
+                    <div class="d-flex align-items-center justify-content-left">
+                        <img src="img/pattern1.png" alt="pattern-icon">
+                        <span>Fractals</span>
+                    </div>
+                </a>
+            </li>
+
+            <!-- Nav Item - Color Schemes -->
+            <li class="nav-item">
+                <a class="nav-link pt-2 pb-2" href="pageColorSchemes.html">
+                    <div class="d-flex align-items-center justify-content-left">
+                        <img src="img/art1.png" alt="art-icon">
+                        <span>Color Schemes</span>
+                    </div>
+                </a>
+            </li>
+
+            <!-- Nav Item - Moving Images -->
+            <li class="nav-item">
+                <a class="nav-link pt-2 pb-2" href="pageMovingImages.html">
+                    <div class="d-flex align-items-center justify-content-left">
+                        <img src="img/move1.png" alt="move-icon">
+                        <span>Moving Images</span>
+                    </div>
+                </a>
+            </li>
+
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content" class="text-center">
+
+                <div id="main-content" class="mr-4 ml-4"  style="border-radius: 30px; background-color: #13293D; background-image: none; overflow-y: auto; max-height: 530px;">
+                    <a href="index.html"><div class="mt-4" style="float: left; margin-left: 20px;"><img src="img/previous (1).png" alt="art-icon" style="height: 40px;"></div></a>
+                    <div class="mt-5 p-4 mb-4">
+                        <span class="h3 mb-4 mt-4 text-white">Materials</span>
+                    </div>
+                    <div style="text-align: left; padding: 0px 70px; color: white; font-size: 16px; font-weight: bold;">
+                        <p>Here is a list of links available for your use. We highly recommend you familiarize with them in advance:</p>
+                        <ul>
+                            <li>● https://en.wikipedia.org/wiki/Vicsek_fractal</li>
+                            <li>● https://en.wikipedia.org/wiki/Newton_fractal</li>
+                            <li>● https://en.wikipedia.org/wiki/Color_model</li>
+                            <li>● https://en.wikipedia.org/wiki/Affine_transformation</li>
+                        </ul>
+                        <p>You can also use our study materials containing a short summary of each highlighted topic:</p>
+                    </div>
+                    <div class="materials mt-5">
+                        <div class="materials-content">
+                            <div class="dropdown" onclick="toggleSection(this, 'section1')"><img src="img/left2.png" alt="arrow" style="height: 25px;"><h3 style="margin-top: 2px; font-size: 16px; font-weight: bold;">Introduction to Fractals. Viksec fractal, Newton fractal</h3></div>
+                            <div id="section1" class="section">
+                                <h2 style="font-size: 16px; margin-bottom: 20px;"><strong>🤓 What is a fractal?</strong></h2>
+
+                                <p>
+                                    A fractal is a complex geometric shape that exhibits self-similarity at various scales. This means that as
+                                    you zoom in on a small portion of the fractal, it appears similar to the overall shape. Fractals are generated
+                                    through iterative mathematical equations, and they often have intricate and detailed patterns that repeat at
+                                    different levels of magnification.
+                                </p>
+                            
+                                <h2 style="font-size: 14px; margin-bottom: 20px; margin-top: 30px;"><strong>Key Characteristics of Fractals:</strong></h2>
+                            
+                                <ol>
+                                    <li><strong>Self-Similarity:</strong> Fractals display a pattern that repeats itself at different scales. This
+                                        property is evident when you examine smaller and smaller portions of the fractal.</li>
+                                    <li><strong>Detail and Complexity:</strong> Fractals can be highly detailed and exhibit complex patterns. Even
+                                        though the overall shape may seem simple, the details can be incredibly intricate.</li>
+                                    <li><strong>Non-Integer Dimension:</strong> Fractals often have a non-integer dimension, meaning that they don't
+                                        fit neatly into standard Euclidean geometry. Instead, their dimension lies between whole numbers,
+                                        reflecting their self-replicating and space-filling nature.</li>
+                                </ol>
+                            
+                                <p>
+                                    Fractals have applications in various fields, including mathematics, computer science, art, and nature. They are
+                                    often used to model and understand natural phenomena, simulate realistic landscapes, and create visually
+                                    captivating art. The Mandelbrot set is one of the most well-known examples of a fractal, and it has been
+                                    extensively studied and explored in both mathematical and artistic contexts.
+                                </p>
+
+                                <h2 style="font-size: 16px; margin-bottom: 20px; margin-top: 30px;"><strong>🤓 Vicsek fractal</strong></h2>
+
+                                <p>
+                                    In mathematics the Vicsek fractal, also known as Vicsek snowflake or box fractal,
+                                    is a fractal arising from a construction similar to that of the Sierpinski carpet, proposed by Tamás Vicsek. 
+                                    It has applications including as compact antennas, particularly in cellular phones.
+                                </p>
+
+                                <h2 style="font-size: 14px; margin-bottom: 20px; margin-top: 30px; font-weight: bolder;">Construction</h2>
+
+                                <p>
+                                    The basic square is decomposed into nine smaller squares in the 3-by-3 grid. 
+                                    The four squares at the corners and the middle square are left, the other squares being removed. 
+                                    The process is repeated recursively for each of the five remaining subsquares. 
+                                    The Vicsek fractal is the set obtained at the limit of this procedure.
+                                </p>
+                                <p>
+                                    An alternative construction is to remove the four corner squares and leave the middle square and the squares above, 
+                                    below, left and right of it. The two constructions produce identical limiting curves,
+                                    but one is rotated by 45 degrees with respect to the other.
+                                </p>
+
+                                <div style="display: flex; flex-direction: column; align-items: center;">
+                                    <img src="img/4iter.png" alt="4iterVicsek" style="height: 200px; margin-top: 30px;">
+                                    <p style="padding: 0px 70px; font-size: 10px; color: rgba(0, 0, 0, 0.5);">
+                                        Four iterations of the saltire form of the fractal (top) 
+                                        and the cross form of the fractal (bottom).
+                                    </p>
+                                </div>
+
+                                <h2 style="font-size: 16px; margin-bottom: 20px; margin-top: 30px;"><strong>🤓 Newton fractal z^4 + C</strong></h2>
+
+                                <p>
+                                    The Newton fractal associated with the function f(z) = z^4 + C is a type of complex dynamic system and a variation of the more 
+                                    general Newton's method for finding roots of complex polynomials. In this case, 
+                                    z and C are complex numbers.
+                                </p>
+
+                                <h2 style="font-size: 14px; margin-bottom: 20px; margin-top: 30px;"><strong>Here's a brief explanation of how the Newton fractal for z^4 + C is generated:</strong></h2>
+                                <ol>
+                                    <li><strong>Function Definition:</strong> The function f(z) = z^4 + C is used in the iterative process.</li>
+                                    <li><strong>Newton's Method Iteration:</strong> The Newton fractal is generated by 
+                                        applying Newton's method iteratively for each point in the complex plane. The iteration formula is given by: z(n + 1) = z(n) - f(z(n)) / f'(z(n)). 
+                                        The iteration continues until a certain condition is met or a maximum number of iterations is reached.</li>
+                                    <li><strong>Coloring Scheme:</strong> The resulting values of 
+                                        z after the iteration are often assigned colors based on certain criteria. 
+                                        For example, the number of iterations taken to converge to a root or a specified threshold 
+                                        might determine the color of a pixel.</li>
+                                    <li><strong>Visualization:</strong> The colored points are then used to generate an image, 
+                                        creating the visually striking and intricate patterns that characterize fractals. 
+                                        The areas of the fractal that take more iterations to converge are often associated 
+                                        with more intricate patterns.</li>
+                                </ol>
+
+                                <p>
+                                    The Newton fractal for z^4 + C can exhibit a variety of shapes and structures depending on 
+                                    the value of c chosen. Different values of c can lead to different patterns, 
+                                    and exploring the parameter space can reveal a rich diversity of visual outcomes.
+                                </p>
+
+                                <div style="display: flex; flex-direction: column; align-items: center;">
+                                    <img src="img/newton.jpg" alt="newton" style="margin-top: 30px;">
+                                    <p style="padding: 0px 70px; font-size: 10px; color: rgba(0, 0, 0, 0.5);">
+                                        p(z) = z^4 - 1, a = 1
+                                    </p>
+                                </div>
+                            </div>
+                        
+                            <div class="dropdown" onclick="toggleSection(this, 'section2')"><img src="img/left2.png" alt="arrow" style="height: 25px;"><h3 style="margin-top: 2px; font-size: 16px; font-weight: bold;">Color schemes. CMYK, HSL</h3></div>
+                            <div id="section2" class="section">
+                                <h2 style="font-size: 16px; margin-bottom: 20px;"><strong>🎨 What is a color model?</strong></h2>
+
+                                <p>
+                                    Color models are mathematical models that describe the way colors can be represented as 
+                                    tuples of numbers, providing a systematic way to express and interpret colors. These 
+                                    models are used in various fields, including computer graphics, imaging, and design. 
+                                    Different color models have different purposes and applications. Here are some commonly 
+                                    used color models:
+                                </p>
+
+                                <h2 style="font-size: 16px; margin-bottom: 20px;"><strong>🎨 CMYK</strong></h2>
+
+                                <p>
+                                    CMYK is a subtractive color model used in color printing and describes the printing process 
+                                    itself. The name CMYK stands for Cyan, Magenta, Yellow, and Key (black), with "Key" 
+                                    representing the black color. In this model, colors are created by subtracting varying 
+                                    percentages of light from a white background.
+                                </p>
+
+                                <h2 style="font-size: 14px; margin-bottom: 20px; margin-top: 30px;"><strong>Here are key points about the CMYK color model:</strong></h2>
+
+                                <ol>
+                                    <li><strong>Color Representation:</strong> 
+                                        <ul>
+                                            <li><strong>Cyan (C): </strong>Represents the color between blue and green.</li>
+                                            <li><strong>Magenta (M): </strong>Represents the color between red and blue.</li>
+                                            <li><strong>Yellow (Y): </strong>Represents the color between red and green.</li>
+                                            <li><strong>Key (K): </strong>Represents the black color, which is added 
+                                                for depth and detail and to improve contrast. The use of "K" for black 
+                                                helps distinguish it from "B" used for blue in RGB.</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Color Mixing:</strong> In the CMYK model, colors are created by subtracting percentages 
+                                        of each ink color from white. For example, to produce red, one would subtract cyan, green
+                                         would be produced by subtracting magenta, and blue by subtracting yellow.</li>
+                                    <li><strong>Printing Process:</strong> In color printing, CMYK is the standard color model. 
+                                        Printing devices, such as color printers and offset printing presses, use combinations of cyan, 
+                                        magenta, yellow, and black inks to reproduce a wide range of colors.</li>
+                                </ol>
+
+                                <div style="display: flex; flex-direction: column; align-items: center;">
+                                    <img src="img/cmykVSrgb.jpeg" alt="cmykVSrgb" style="height: 200px; margin-top: 30px;">
+                                    <p style="padding: 0px 70px; font-size: 10px; color: rgba(0, 0, 0, 0.5);">
+                                        CMYK vs RGB
+                                    </p>
+                                </div>
+
+                                <h2 style="font-size: 16px; margin-bottom: 20px;"><strong>🎨 HSL</strong></h2>
+
+                                <p>
+                                    HSL (Hue, Saturation, Lightness) is a cylindrical-coordinate representation of colors in 
+                                    a three-dimensional color model. It is designed to be more intuitive for human perception 
+                                    than some other color models, making it popular in graphic design, image editing, and other 
+                                    applications where users interact with colors. 
+                                </p>
+
+                                <h2 style="font-size: 14px; margin-bottom: 20px; margin-top: 30px;"><strong>Here are the key components of the HSL color model:</strong></h2>
+                                <ol>
+                                    <li><strong>Hue (H):</strong> 
+                                        <ul>
+                                            <li><strong>Description: </strong> Hue represents the type of color, often described as the dominant wavelength of light that is perceived.</li>
+                                            <li><strong>Representation: </strong>Hue is typically represented as an angle around a color wheel, ranging from 0 to 360 degrees. The color wheel starts and ends with red, passing through yellow, green, cyan, blue, and magenta.</li>
+                                            <li><strong>Example: </strong>A hue of 0° corresponds to red, 120° to green, and 240° to blue.</li>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Saturation (S):</strong>
+                                        <ul>
+                                            <li><strong>Description:  </strong>Saturation represents the intensity or vividness of a color. Higher saturation values result in more vibrant colors, while lower values lead to more muted or grayscale tones.</li>
+                                            <li><strong>Representation: </strong>Saturation is typically represented as a percentage, ranging from 0% (gray or completely desaturated) to 100% (fully saturated).</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Lightness (L):</strong>
+                                        <ul>
+                                            <li><strong>Description:  </strong>Lightness represents the brightness of the color. It determines how much white or black is mixed with the color.</li>
+                                            <li><strong>Representation: </strong>Lightness is typically represented as a percentage, ranging from 0% (black) to 100% (white). A lightness value of 50% corresponds to the "normal" color.</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+
+                                <div style="display: flex; flex-direction: column; align-items: center;">
+                                    <img src="img/hsl.png" alt="hsl" style="height: 200px; margin-top: 30px;">
+                                    <p style="padding: 0px 70px; font-size: 10px; color: rgba(0, 0, 0, 0.5);">
+                                        HSL
+                                    </p>
+                                </div>
+
+                            </div>
+                        
+                            <div class="dropdown" onclick="toggleSection(this, 'section3')"><img src="img/left2.png" alt="arrow" style="height: 25px;"><h3 style="margin-top: 2px; font-size: 16px; font-weight: bold;">Moving images. Affine transformations</h3></div>
+                            <div id="section3" class="section">
+                                <h2 style="font-size: 16px; margin-bottom: 20px;"><strong>📐 What are affine transformations?</strong></h2>
+
+                                <p>
+                                    Affine transformations are a type of geometric transformation used in computer graphics,
+                                    computer vision, and various other fields. They include a combination of linear transformations 
+                                    (such as rotation, scaling, and shearing) and translation (shifting). Affine transformations
+                                    preserve straight lines and parallelism, but they don't necessarily preserve angles or distances.
+                                </p>
+
+                                <h2 style="font-size: 14px; margin-bottom: 20px; margin-top: 30px;"><strong>The general form of a 2D affine transformation can be represented using a 3x3 matrix:</strong></h2>
+
+                                <div style="display: flex; flex-direction: column; align-items: center;">
+                                    <img src="img/affMatrix.png" alt="affMatrix" style="height: 100px; margin-top: 30px;">
+                                    <p style="padding: 0px 70px; font-size: 10px; color: rgba(0, 0, 0, 0.5);">
+                                        Here, the matrix elements a, b, d, e represent the scaling and rotation components,
+                                        while c and f represent the translation components.
+                                    </p>
+                                </div>
+                                <p>
+                                    The transformation of a point (x,y) using an affine transformation matrix 
+                                    M is given by the following equations:
+                                </p>
+                                <ul>
+                                    <li>
+                                        x' = ax + by + c
+                                    </li>
+                                    <li>
+                                        y' = dx + ey + f
+                                    </li>
+                                </ul>
+
+                                <p>
+                                    In the context of computer graphics, affine transformations are commonly used to perform
+                                    operations such as translation, rotation, scaling, and shearing on images or objects. 
+                                    They are efficient and widely used because they can be easily represented and manipulated 
+                                    using matrices, making them computationally efficient.
+                                </p>
+
+                                <h2 style="font-size: 14px; margin-bottom: 20px; margin-top: 30px;"><strong>Here are some common affine transformations:</strong></h2>
+
+                                <ul>
+                                    <li>
+                                        <div style="display: flex; flex-direction: column; align-items: center;">
+                                            <img src="img/translation.png" alt="translation" style="height: 100px; margin-top: 30px;">
+                                            <p style="padding: 0px 70px; font-size: 10px; color: rgba(0, 0, 0, 0.5);">
+                                                Translation
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div style="display: flex; flex-direction: column; align-items: center;">
+                                            <img src="img/scaling.png" alt="scaling" style="height: 100px; margin-top: 30px;">
+                                            <p style="padding: 0px 70px; font-size: 10px; color: rgba(0, 0, 0, 0.5);">
+                                                Scaling
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div style="display: flex; flex-direction: column; align-items: center;">
+                                            <img src="img/rotation.png" alt="rotation" style="height: 100px; margin-top: 30px;">
+                                            <p style="padding: 0px 70px; font-size: 10px; color: rgba(0, 0, 0, 0.5);">
+                                                Rotation
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div style="display: flex; flex-direction: column; align-items: center;">
+                                            <img src="img/shearing.png" alt="shearing" style="height: 100px; margin-top: 30px;">
+                                            <p style="padding: 0px 70px; font-size: 10px; color: rgba(0, 0, 0, 0.5);">
+                                                Shearing
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <p>
+                                    Applying these transformations to an object or an image allows you to achieve 
+                                    various visual effects and manipulate the position, orientation, 
+                                    and scale of the object.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Page Heading -->
+            </div>
+            <!-- End of Main Content -->
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Footer -->
+    <footer class="footer">
+
+            <div class="copyright text-left my-auto">
+                <span>Performed by students of group PZ32: Anna Suslova, Daryna Kruk</span>
+            </div>
+        
+    </footer>
+    <!-- End of Footer -->
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.js"></script>
+    <script src="js/sections.js"></script>
+
+</body>
+
+</html>

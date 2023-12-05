@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Fractals</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.3.0/math.min.js"></script>
+    <link rel="shortcut icon" type="image/png" href="img/icon.png">
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+    <link href="css/ComputerGraphics.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+    
+    <!-- Topbar -->
+    <nav class="navbar">
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="d-flex align-items-center justify-content-left">
+            <div id="menu-button">
+                <img  id="sidebarToggle" src="img/menu.png" alt="menu-icon">
+            </div>
+            <a href="index.html">
+                <div class="d-flex flex-row align-items-center">
+                    <img class="pl-4" src="img/icon.png" alt="icon">
+                    <span>Computer Graphics</span>
+                </div>
+            </a>
+        </div>
+        <!-- Topbar Navbar -->
+        <ul class="navbar-nav ml-auto">
+
+        </ul>
+    </nav>
+    <!-- End of Topbar -->
+    <div class="tabs">
+        <button class="tablink" onclick="openPage('newton-fractal-content', this)" id="defaultOpen">Newton fractal</button>
+        <button class="tablink" onclick="openPage('vicsek-fractal-content', this)" >Vicsek fractal</button>
+        <!-- <div style="margin-right: 2rem;"></div> -->
+    </div>
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav  sidebar  accordion" id="accordionSidebar">
+
+            <!-- Nav Item - Main -->
+            <li class="nav-item">
+                <a class="nav-link pb-2" href="index.html">
+                    <div class="d-flex align-items-center justify-content-left">
+                        <img src="img/home1.png" alt="home-icon">
+                        <span>Main</span>
+                    </div>
+                </a>
+            </li>
+
+            <!-- Nav Item - Fractals -->
+            <li class="nav-item">
+                <a class="nav-link pt-2 pb-2" href="pageFractal.html">
+                    <div class="d-flex align-items-center justify-content-left" style="background-color: #028090; color: white;">
+                        <img src="img/pattern2.png" alt="pattern-icon">
+                        <span>Fractals</span>
+                    </div>
+                </a>
+            </li>
+
+            <!-- Nav Item - Color Schemes -->
+            <li class="nav-item">
+                <a class="nav-link pt-2 pb-2" href="pageColorSchemes.html">
+                    <div class="d-flex align-items-center justify-content-left">
+                        <img src="img/art1.png" alt="art-icon">
+                        <span>Color Schemes</span>
+                    </div>
+                </a>
+            </li>
+
+            <!-- Nav Item - Moving Images -->
+            <li class="nav-item">
+                <a class="nav-link pt-2 pb-2" href="pageMovingImages.html">
+                    <div class="d-flex align-items-center justify-content-left">
+                        <img src="img/move1.png" alt="move-icon">
+                        <span>Moving Images</span>
+                    </div>
+                </a>
+            </li>
+
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
+                <div id="newton-fractal-content" class="tabcontent"  style="border-top-left-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px;">
+                    <div class="ml-4" style="width: 60%;">
+                        <div class="mt-5 mb-4 justify-content-left pt-4">
+                            <p class="text-left mt-2">Newton fractal</p>
+                        </div>
+                        <div class="pt-4 pb-4">
+                            <span class="text-left">Formula: <span style="font-weight:bold; color: #13293D; font-size: 15px;">f(z)=z^4 + C </span> </span>
+                        </div>
+                        <div class="pt-2 pb-2">
+                            <span class="text-left">C Real</span>
+                            <input class="float-right" type="text" id="inputConstantCReal" name="inputConstantCReal" style="padding-left: 3px;"><br><br>
+                        </div>
+                        <div class="pt-1 pb-2">
+                            <span class="text-left">C Img</span>
+                            <input class="float-right" type="text" id="inputConstantCImg" name="inputConstantCImg" style="padding-left: 3px;"><br><br>
+                        </div>
+                        <div class="pt-2 pb-2">
+                            <span class="text-left">Number of iterations</span>
+                            <input class="float-right" type="text" id="inputNumberIterationsNewton" name="inputNumberIterations" style="padding-left: 3px;"><br><br>
+                        </div>
+                        <div class="pt-2 pb-4">
+                            <span class="text-left">Color Theme</span>
+                        <select class="float-right" id="colorThemes" name="colorThemes">
+                            <option value="Winter">Winter</option>
+                            <option value="Spring">Spring</option>
+                            <option value="Summer">Summer</option>
+                            <option value="Autumn">Autumn</option>
+                            <option value="Picture">From picture</option>
+                        </select>
+                        <div id="fileUploadWrapper" style="display: none;">
+                            <input type="file" id="imageUpload" name="imageUpload" accept="image/*">
+                        </div>
+                        </div>
+                        <div class="pt-2 pb-4">
+                            <span class="text-left">Scale</span>
+                            <input class="float-right" type="range" id="scale" name="scale" min="0" max="199" value="0">
+                            <div class="slider-marks float-right">
+                                <span class="slider-mark" style="font-size: 15px;">0%</span>
+                                <span class="slider-mark" style="font-size: 15px;">100%</span>
+                            </div>
+                        </div>
+                        <div class="text-center" style="margin-top: 35px;">
+                            <button class="mr-4" onclick="generateNewton()" style="background-color: #028090; color:white">Build</button>
+                            <button style="background-color:white; color:#13293D" onclick="exportNewton()">Export</button>
+                        </div>
+                    </div>
+                    <div class="mt-auto mb-auto text-center" style="width: 100%;">
+                            <canvas  width="450px" height="450px" id="displayNewton"></canvas><br>
+                    </div>
+                </div>
+
+                <div id="vicsek-fractal-content" class="tabcontent"  style="border-top-left-radius: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px;">
+                    <div class="ml-4" style="width: 60%;">
+                        <div class="mt-5 mb-4 justify-content-left pt-4">
+                            <p class="text-left mt-2">Vicsek fractal</p>
+                        </div>
+                        <div class="pt-4 pb-2">
+                            <span class="text-left">Number of iterations</span>
+                            <input class="float-right" type="text" id="inputNumberIterationsVicsec" name="inputNumberIterations" style="padding-left: 3px;"><br><br>
+                        </div>
+                        <div class="pt-4 pb-4">
+                            <span class="text-left">Color</span>
+                            <input class="float-right" type="color" id="favcolorVicsec" name="favcolor" value="#028090"><br>
+                        </div>
+                        <div class="text-center pt-4" style="margin-top: 180px;">
+                            <button class="mr-4" onclick="generateVicsec()" style="background-color: #028090; color:white">Build</button>
+                            <button style="background-color:white; color:#13293D" onclick="exportVicsek()">Export</button>
+                        </div>
+                    </div>
+                    <div class="mt-auto mb-auto text-center" style="width: 100%;">
+                        <canvas  width="450px" height="450px" id="displayVicsec"></canvas><br>
+                    </div>
+                </div>
+
+                <div id="helpFractal" class="help-button" onclick="openModal('hintFractal')">?</div>
+
+                <!-- Modal -->
+                <div id="hintFractal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal('hintFractal')">&times;</span>
+                        <h2 style="font-size: 20px; margin-bottom: 20px;"><strong>🤓 A manual on Fractals page</strong></h2>
+
+                        <div class="section" style="display: block;">
+                            <h2 style="font-size: 16px; margin-bottom: 20px;"><strong>Tabs</strong></h2>
+
+                            <ul>
+                                <li>
+                                    ● Click 'Newton fractal' tab to open Newton fractal page
+                                </li>
+                                <li>
+                                    ● Click 'Vicsek fractal' tab to open Vicsek fractal page
+                                </li>
+                            </ul>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <img src="img/tabs.png" alt="tabs" style="height: 80px; margin-top: 30px;">
+                                <p style="padding: 0px 70px; font-size: 10px; color: rgba(0, 0, 0, 0.5);">
+                                    Tabs
+                                </p>
+                            </div>
+
+                            <h2 style="font-size: 16px; margin-bottom: 20px;"><strong>Buttons</strong></h2>
+
+                            <ul>
+                                <li>
+                                    ● Click 'Build' button to start fractal drawing based on your input information
+                                </li>
+                                <li>
+                                    ● Click 'Export' button to download the current fractal
+                                </li>
+                            </ul>
+
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <img src="img/buttons.png" alt="buttons" style="height: 80px; margin-top: 30px;">
+                                <p style="padding: 0px 70px; font-size: 10px; color: rgba(0, 0, 0, 0.5);">
+                                    Buttons
+                                </p>
+                            </div>
+
+                            <h2 style="font-size: 16px; margin-bottom: 20px;"><strong>Inputs</strong></h2>
+
+                            <ul>
+                                <li>
+                                    ● Enter input information before clicking 'Build'
+                                </li>
+                                <li>
+                                    ● Alert messages will inform you of valid values for input fields
+                                </li>
+                                <li>
+                                    ● Drag 'Scale' to change the scale of your fractal image
+                                </li>
+                                <li>
+                                    ● Use 'Color Theme' input to choose a theme of four colours for Newton fractal. The 'From picture' option creates a pallette of four colors from given picture using median cut quantization
+                                </li>
+                                <li>
+                                    ● Use 'Color' input to choose a color for Vicsek fractal
+                                </li>
+                            </ul>
+
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <img src="img/inputs.png" alt="inputs" style="height: 80px; margin-top: 30px;">
+                                <p style="padding: 0px 70px; font-size: 10px; color: rgba(0, 0, 0, 0.5);">
+                                    Inputs
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Page Heading -->
+            </div>
+            <!-- End of Main Content -->
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Footer -->
+    <footer class="footer">
+
+            <div class="copyright text-left my-auto">
+                <span>Performed by students of group PZ32: Anna Suslova, Daryna Kruk</span>
+            </div>
+        
+    </footer>
+    <!-- End of Footer -->
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.js"></script>
+    <script src="js/tabs.js"></script>
+    <script src="js/newtonFractal.js"></script>
+    <script src="js/vicsecFractal.js"></script>
+    <script src="js/median.js"></script>
+    <script src="js/export.js"></script>
+    <script src="js/helper.js"></script>
+
+</body>
+
+</html>

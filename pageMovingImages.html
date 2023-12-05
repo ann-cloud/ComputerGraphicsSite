@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Moving Images</title>
+    <link rel="shortcut icon" type="image/png" href="img/icon.png">
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+    <link href="css/ComputerGraphics.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+    
+    <!-- Topbar -->
+    <nav class="navbar">
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="d-flex align-items-center justify-content-left">
+            <div id="menu-button">
+                <img  id="sidebarToggle" src="img/menu.png" alt="menu-icon">
+            </div>
+            <a href="index.html">
+                <div class="d-flex flex-row align-items-center">
+                    <img class="pl-4" src="img/icon.png" alt="icon">
+                    <span>Computer Graphics</span>
+                </div>
+            </a>
+        </div>
+        <!-- Topbar Navbar -->
+        <ul class="navbar-nav ml-auto">
+
+        </ul>
+    </nav>
+    <!-- End of Topbar -->
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav  sidebar  accordion" id="accordionSidebar">
+
+            <!-- Nav Item - Main -->
+            <li class="nav-item">
+                <a class="nav-link pb-2" href="index.html">
+                    <div class="d-flex align-items-center justify-content-left">
+                        <img src="img/home1.png" alt="home-icon">
+                        <span>Main</span>
+                    </div>
+                </a>
+            </li>
+
+            <!-- Nav Item - Fractals -->
+            <li class="nav-item">
+                <a class="nav-link pt-2 pb-2" href="pageFractal.html">
+                    <div class="d-flex align-items-center justify-content-left">
+                        <img src="img/pattern1.png" alt="pattern-icon">
+                        <span>Fractals</span>
+                    </div>
+                </a>
+            </li>
+
+            <!-- Nav Item - Color Schemes -->
+            <li class="nav-item">
+                <a class="nav-link pt-2 pb-2" href="pageColorSchemes.html">
+                    <div class="d-flex align-items-center justify-content-left">
+                        <img src="img/art1.png" alt="art-icon">
+                        <span>Color Schemes</span>
+                    </div>
+                </a>
+            </li>
+
+            <!-- Nav Item - Moving Images -->
+            <li class="nav-item">
+                <a class="nav-link pt-2 pb-2" href="pageMovingImages.html">
+                    <div class="d-flex align-items-center justify-content-left"  style="background-color: #028090; color: white;">
+                        <img src="img/move2.png" alt="move-icon">
+                        <span>Moving Images</span>
+                    </div>
+                </a>
+            </li>
+
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
+                <div id="moving-images-content" class="tabcontent d-flex flex-row align-items-stretch mr-4 ml-4"  style="border-radius: 30px;">
+                    <div class="ml-4 text-center d-flex flex-column align-items-center justify-content-center" style="width: 30%;">
+                        
+                        <label>Parallelogram parameters:</label>
+                        <div class="d-flex flex-column parameters-container">
+                            <div class="d-flex flex-row mb-2 mt-2">
+                                <span class="side-label">A</span>
+                                <span class="parameters-label">x</span>
+                                <input type="text" id="xA-value" class="line-value" value="-5">
+                                <span class="parameters-label">y</span>
+                                <input type="text" id="yA-value" class="line-value" value="4">
+                            </div>
+                            <div class="d-flex flex-row mb-2">
+                                <span class="side-label">B</span>
+                                <span class="parameters-label">x</span>
+                                <input type="text" id="xB-value" class="line-value" value="-4">
+                                <span class="parameters-label">y</span>
+                                <input type="text" id="yB-value" class="line-value" value="6">
+                            </div>
+                            <div class="d-flex flex-row mb-2">
+                                <span class="side-label">C</span>
+                                <span class="parameters-label">x</span>
+                                <input type="text" id="xC-value" class="line-value" value="-2">
+                                <span class="parameters-label">y</span>
+                                <input type="text" id="yC-value" class="line-value" value="6">
+                            </div>
+                            
+                        </div>
+                        
+                        <label class="mt-4">Mirror to y = ax + b:</label>
+                        <div class="line-container">
+                            <div class="d-flex">
+                                <span class="line-label">a</span>
+                                <input type="text" id="a-value" class="line-value" value="1">
+                                <span class="line-label">b</span>
+                                <input type="text" id="b-value" class="line-value" value="5">
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row align-items-center mt-4">
+                            <label class="mr-4 mb-4">Scale</label>
+                            <div class="d-flex flex-column mr-4">
+                                <input type="range" id="scaleImage" name="scaleImage" min="1" max="100" value="0">
+                                <div class="slider-marks">
+                                    <label class="slider-mark">0%</label>
+                                    <label class="slider-mark">100%</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center" style="margin-top: 35px;">
+                            <button class="mr-4" onclick="buildParallelogram()" style="background-color: #028090; color:white">Build</button>
+                            <button onclick="buildMirroredParallelogramBySteps()" style="background-color: #00c843; color:white" id="startMovement">Start</button>
+                        </div>
+                        <div class="text-center">
+                            <button class="mr-4" onclick="exportMovingImage()" style="background-color: white; color: #13293D; border-radius: 25px; margin-top: 20px;">Export</button>
+                            <button onclick="stopSimulation()" style="background-color: #ff0000; color:white">Stop</button>
+                        </div>
+                    </div>
+                    <div class="mt-auto mb-auto text-center" style="width: 70%;">
+                        <div>
+                            <canvas width="500" height="500" id="moving-img"></canvas>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div id="helpMovingImages" class="help-button" onclick="openModal('hintMovingImages')">?</div>
+
+                <!-- Modal -->
+                <div id="hintMovingImages" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal('hintMovingImages')">&times;</span>
+                        <h2 style="font-size: 20px; margin-bottom: 20px;"><strong>📐 A manual on Moving Images page</strong></h2>
+
+                        <div class="section" style="display: block;">
+
+                            <h2 style="font-size: 16px; margin-bottom: 20px;"><strong>Buttons</strong></h2>
+
+                            <ul>
+                                <li>
+                                    ● Click 'Build' button to build parallelogram and draw a line y = ax + b based on your input information 
+                                </li>
+                                <li>
+                                    ● Click 'Start' button to start the movement of parallelogram based on affine transformations. 
+                                    The result will show your parallelogram mirrored about y = ax + b line
+                                </li>
+                                <li>
+                                    ● Click 'Stop' button to prevent parallelogram from moving on to next affine transformation
+                                </li>
+                                <li>
+                                    ● Click 'Export' button to download the current content
+                                </li>
+                            </ul>
+
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <img src="img/buttons2.png" alt="buttons2" style="height: 100px; margin-top: 30px;">
+                                <p style="padding: 0px 70px; font-size: 10px; color: rgba(0, 0, 0, 0.5);">
+                                    Buttons
+                                </p>
+                            </div>
+
+                            <h2 style="font-size: 16px; margin-bottom: 20px;"><strong>Inputs</strong></h2>
+
+                            <ul>
+                                <li>
+                                    ● Enter input information before clicking 'Build'
+                                </li>
+                                <li>
+                                    ● Alert messages will inform you of valid values for input fields
+                                </li>
+                                <li>
+                                    ● Drag 'Scale' to change the scale of your content
+                                </li>
+                            </ul>
+
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <img src="img/inputs2.png" alt="inputs2" style="height: 80px; margin-top: 30px;">
+                                <p style="padding: 0px 70px; font-size: 10px; color: rgba(0, 0, 0, 0.5);">
+                                    Inputs
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Page Heading -->
+            </div>
+            <!-- End of Main Content -->
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Footer -->
+    <footer class="footer">
+
+            <div class="copyright text-left my-auto">
+                <span>Performed by students of group PZ32: Anna Suslova, Daryna Kruk</span>
+            </div>
+        
+    </footer>
+    <!-- End of Footer -->
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.js"></script>
+    <script src="js/movingImages.js"></script>
+    <script src="js/export.js"></script>
+    <script src="js/helper.js"></script>
+</body>
+
+</html>
