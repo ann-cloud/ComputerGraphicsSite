@@ -6,7 +6,8 @@ var isBuildClicked = false;
 var isStartClicked = false;
 var isStopClicked = false;
 var parallelogram;
-var tempParallelogram;
+var timeoutIds = [];
+
 
 const canvas = document.getElementById('moving-img');
 const ctx = canvas.getContext('2d');
@@ -507,7 +508,10 @@ function drawMovementStep(mirroredParallelogram, stepIndex)
     function drawNextParallelogram() {
         if (currentParallelogramIndex < 50) {
             if (isStopClicked)
+            {
+                stopSimulation();
                 return;
+            }
             const i = currentParallelogramIndex;
             const unitScale = calculateUnitScale(scale);
             drawCoordinates(scale);
@@ -581,19 +585,21 @@ function buildMirroredParallelogramBySteps()
             const mirroredParallelogram = mirrorParallelogram(parallelogram, a, b);
             
             function drawWithDelay(index) {
-                setTimeout(function () {
+                let timeoutId = setTimeout(function () {
                     drawMovementStep(mirroredParallelogram, index);
-                }, index * 2000); 
+                }, index * 2000);
+                
+                timeoutIds.push(timeoutId);
             }
-
-            for (let i = 0; i < 5; ++i)
-            {
+            
+            for (let i = 0; i < 5; ++i) {
                 drawWithDelay(i);
             }
         }
         document.getElementById('startMovement').onclick = null;
     }
 }
+
 
 function buildMirroredParallelogramFinal()
 {
@@ -688,5 +694,8 @@ function stopSimulation()
         alert("First you need to build paralelogram and line");
     } else {
         isStopClicked = true;
+    }
+    for (let id of timeoutIds) {
+        clearTimeout(id);
     }
 }
