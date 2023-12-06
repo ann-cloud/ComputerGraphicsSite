@@ -187,11 +187,11 @@ function multiplyMatrices(matrixA, matrixB) {
         result[i][j] = 0;
       }
     }
-  
+
     // Perform matrix multiplication
     for (let i = 0; i < matrixB.length; i++) {
       for (let j = 0; j < matrixA.length; j++) {
-        for (let k = 0; k < matrixA[i].length; k++) {
+        for (let k = 0; k < matrixA[j].length; k++) {
           result[i][j] += matrixA[j][k] * matrixB[i][k];
         }
       }
@@ -374,32 +374,42 @@ function mirrorParallelogram(p, a, b) {
     const step4Movement = [];
     const step5Movement = [];
     const theta = Math.atan(a);
-    const translationMatrix = [[0, -b / 50]];
-    const translationMatrixBack = [[0, b / 50]];
+    const translationMatrix = [
+        [1, 0, 0],
+        [0, 1, -b / 50],
+        [0, 0, 1]
+    ];
+    const translationMatrixBack = [
+        [1, 0, 0],
+        [0, 1, b / 50],
+        [0, 0, 1]
+    ];
     const mirrorToXMatrix = [
-        [1, 0],
-        [0, -1]
+        [1, 0, 0],
+        [0, -1, 0],
+        [0, 0, 1]
     ];
     const rotationMatrix = [
-        [Math.cos(theta / 50), -Math.sin(theta / 50)],
-        [Math.sin(theta / 50), Math.cos(theta / 50)]
+        [Math.cos(theta / 50), -Math.sin(theta / 50), 0],
+        [Math.sin(theta / 50), Math.cos(theta / 50), 0],
+        [0, 0, 1]
     ];
     const inverseRotationMatrix = [
-        [Math.cos(theta / 50), Math.sin(theta / 50)],
-        [-Math.sin(theta / 50), Math.cos(theta / 50)]
+        [Math.cos(theta / 50), Math.sin(theta / 50), 0],
+        [-Math.sin(theta / 50), Math.cos(theta / 50), 0],
+        [0, 0, 1]
     ];
     
     let step1, step2, step3, step4, step5;
 
     for (let i = 0; i < p.length; ++i)
     {
-        step1 = [[p[i].x, p[i].y]];
+        step1 = [[p[i].x, p[i].y, 1]];
         for (let j = 0; j < 50; ++j)
         {
-            step1 = addMatrices(step1, translationMatrix);
+            step1 = multiplyMatrices(translationMatrix, step1);
             step1Movement.push({x: step1[0][0], y: step1[0][1]});
         }
-        
         step2 = step1;
 
         for (let j = 0; j < 50; ++j)
@@ -425,7 +435,7 @@ function mirrorParallelogram(p, a, b) {
         
         for (let j = 0; j < 50; ++j)
         {
-            step5 = addMatrices(step5, translationMatrixBack);
+            step5 = multiplyMatrices(translationMatrixBack, step5);
             step5Movement.push({x: step5[0][0], y: step5[0][1]});
         }
     }
