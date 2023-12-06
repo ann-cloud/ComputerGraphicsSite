@@ -41,8 +41,19 @@ document.getElementById('imageUpload').addEventListener('change', function() {
             }
         }
         // Розподіл пікселів у кілька бакетів
-        splitIntoBuckets(imageData, imgDataArray, 2);
-        palette = quantizedColors;
+        try{
+            splitIntoBuckets(imageData, imgDataArray, 2);
+            palette = quantizedColors;
+        }
+        catch (error) {
+            if (error instanceof RangeError && error.message.includes('Maximum call stack size exceeded')) {
+              console.error('Maximum call stack size exceeded. Recursive function terminated.');
+              alert('The picture is too big for median-cut to work. Try choosing a picture of smaller size.');
+            } else {
+              console.error('An error occurred:', error.message);
+              alert('Error loading picture: ', error.message);
+            }
+          }
     };
 });
 

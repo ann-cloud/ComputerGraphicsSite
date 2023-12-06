@@ -172,37 +172,53 @@ function generateNewton()
   const colors = pickColorTheme(colorTheme);
   let real, imaginary, numberOfIterations;
 
-  if (!isNaN(inputNum) && inputNum >= 0 && inputNum.trim() != "")
+  if (!isNaN(inputNum) && inputNum >= 0 && inputNum.trim() != "" && parseInt(inputNum) <= 1e5)
   {
     numberOfIterations = parseInt(inputNum);
   }
   else
   {
-    alert("Enter a valid number of iterations");
+    if (isNaN(inputNum))
+      alert("Number of iterations should be a number");
+    if (inputNum < 0)
+      alert("Number of iterations should be more than or equal to 0");
+    if (inputNum.trim() == "")
+      alert("Number of iterations can't be an empty space");
+    if (parseInt(inputNum) > 1e4)
+      alert("Number of iterations is too big to handle");
     return;
   }
-  if (!isNaN(inputReal) && inputReal.trim() != "")
+  if (!isNaN(inputReal) && inputReal.trim() != "" && parseInt(inputReal) <= 1e4)
   {
     real = parseInt(inputReal);
   }
   else
   {
-    alert("Enter a valid real constant");
+    if (isNaN(inputReal))
+    alert("Real constant should be a number");
+    if (inputReal.trim() == "")
+      alert("Real constant can't be an empty space");
+    if (parseInt(inputReal) > 1e4)
+      alert("Real constant is too big to handle");
     return;
   }
-  if (!isNaN(inputImg) && inputImg.trim() != "")
+  if (!isNaN(inputImg) && inputImg.trim() != "" && parseInt(inputImg) <= 1e4)
   {
     imaginary = parseInt(inputImg);
   }
   else
   {
-    alert("Enter a valid imaginary constant");
+    if (isNaN(inputImg))
+    alert("Imaginary constant should be a number");
+    if (inputImg.trim() == "")
+      alert("Imaginary constant can't be an empty space");
+    if (parseInt(inputImg) > 1e4)
+      alert("Imaginary constant is too big to handle");
     return;
   }
   const c = new Complex(real, imaginary);
 
   const n = 450;
-  //console.log(domain);
   const m = new Array(n);
 
   for (let i = 0; i < n; i++) {

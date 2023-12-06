@@ -42,44 +42,129 @@ function validateData()
     const a = document.getElementById('a-value').value;
     const b = document.getElementById('b-value').value;
 
-    if (isNaN(aX) || aX.trim() == "")
+    // Validating aX
+    if (isNaN(aX))
     {
-        alert("Enter a valid x coordinate of point A");
+        alert("X coordinate of point A should be a number");
         return false;
     }
-    if (isNaN(aY) || aY.trim() == "")
+    if (aX.trim() == "")
     {
-        alert("Enter a valid y coordinate of point A");
+        alert("X coordinate of point A can't be an empty space");
         return false;
     }
-    if (isNaN(bX) || bX.trim() == "")
+    if (parseInt(aX) > 100 || parseInt(aX) < -100)
     {
-        alert("Enter a valid x coordinate of point B");
+        alert("X coordinate of point A should be in range [-100, 100]");
         return false;
     }
-    if (isNaN(bY) || bY.trim() == "")
+
+    // Validating aY
+    if (isNaN(aY))
     {
-        alert("Enter a valid y coordinate of point B");
+        alert("Y coordinate of point A should be a number");
         return false;
     }
-    if (isNaN(cX) || cX.trim() == "")
+    if (aY.trim() == "")
     {
-        alert("Enter a valid x coordinate of point C");
+        alert("Y coordinate of point A can't be an empty space");
         return false;
     }
-    if (isNaN(cY) || cY.trim() == "")
+    if (parseInt(aY) > 100 || parseInt(aY) < -100)
     {
-        alert("Enter a valid y coordinate of point C");
+        alert("Y coordinate of point A should be in range [-100, 100]");
         return false;
     }
-    if (isNaN(a) || a.trim() == "")
+    
+    // Validating bX
+    if (isNaN(bX))
     {
-        alert("Enter a valid a value");
+        alert("X coordinate of point B should be a number");
         return false;
     }
-    if (isNaN(b) || b.trim() == "")
+    if (bX.trim() == "")
     {
-        alert("Enter a valid b value");
+        alert("X coordinate of point B can't be an empty space");
+        return false;
+    }
+    if (parseInt(bX) > 100 || parseInt(bX) < -100)
+    {
+        alert("X coordinate of point B should be in range [-100, 100]");
+        return false;
+    }
+
+    // Validating bY
+    if (isNaN(bY))
+    {
+        alert("Y coordinate of point B should be a number");
+        return false;
+    }
+    if (bY.trim() == "")
+    {
+        alert("Y coordinate of point B can't be an empty space");
+        return false;
+    }
+    if (parseInt(bY) > 100 || parseInt(bY) < -100)
+    {
+        alert("Y coordinate of point B should be in range [-100, 100]");
+        return false;
+    }
+
+    // Validating cX
+    if (isNaN(cX))
+    {
+        alert("X coordinate of point C should be a number");
+        return false;
+    }
+    if (cX.trim() == "")
+    {
+        alert("X coordinate of point C can't be an empty space");
+        return false;
+    }
+    if (parseInt(cX) > 100 || parseInt(cX) < -100)
+    {
+        alert("X coordinate of point C should be in range [-100, 100]");
+        return false;
+    }
+    
+    // Validating cY
+    if (isNaN(cY))
+    {
+        alert("Y coordinate of point C should be a number");
+        return false;
+    }
+    if (cY.trim() == "")
+    {
+        alert("Y coordinate of point C can't be an empty space");
+        return false;
+    }
+    if (parseInt(cY) > 100 || parseInt(cY) < -100)
+    {
+        alert("Y coordinate of point C should be in range [-100, 100]");
+        return false;
+    }
+
+    // Validating a
+    if (isNaN(a))
+    {
+        alert("a should be a number");
+        return false;
+    }
+    if (a.trim() == "")
+    {
+        alert("a can't be an empty space");
+        return false;
+    }
+
+    // Validating b
+    if (isNaN(b))
+    {
+        alert("b should be a number");
+        return false;
+    }
+    if (b.trim() == "")
+    {
+        alert("b can't be an empty space");
         return false;
     }
     return true;
