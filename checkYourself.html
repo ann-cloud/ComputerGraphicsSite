@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Computer Graphics</title>
+    <title>Quiz</title>
     <link rel="shortcut icon" type="image/png" href="img/icon.png">
 
     <!-- Custom fonts for this template-->
@@ -103,27 +103,19 @@
             <!-- Main Content -->
             <div id="content" class="text-center">
 
-                <div id="main-content" class="mr-4 ml-4"  style="border-radius: 30px;">
-                    
+                <div id="main-content" class="mr-4 ml-4"  style="border-radius: 30px; background-color: #13293D; background-image: none; overflow-y: auto; max-height: 530px;">
+                    <a href="index.html"><div class="mt-4" style="float: left; margin-left: 20px;"><img src="img/previous (1).png" alt="art-icon" style="height: 40px;"></div></a>
                     <div class="mt-5 p-4 mb-4">
-                        <span class="h3 mb-4 mt-4 text-white">Welcome to the main page!</span>
+                        <span class="h3 mb-4 mt-4 text-white">Quiz</span>
                     </div>
-                    <div style="height: 10%;"></div>
-                    <div>
-                        <div>
-                            <a href="about.html"><button class="main-buttons mb-2">About the application</button></a>
-                        </div>
-                        <div>
-                            <a href="materials.html"><button class="main-buttons mt-2 mb-2">Materials</button></a>
-                        </div>
-                        <div>
-                            <a href="howToUse.html"><button class="main-buttons mt-2 mb-2">How to use</button></a>
-                        </div>
-                        <div>
-                            <a href="checkYourself.html"><button class="main-buttons mt-2">Check yourself</button></a>
-                        </div>
+                    <div style="text-align: left; padding: 0px 70px; color: white; font-size: 16px; font-weight: bold;">
+                        <p style="margin-bottom: 40px;">Complete this simple quiz to determine your skills 🤓</p>
+                        <div id="quiz"></div>
+                        <div id="result" class="result"></div>
+                        <button id="submit" class="button">Submit</button>
+                        <button id="retry" style="width: 150px;" class="button hide">Retry</button>
+                        <button id="showAnswer" style="width: 150px;" class="button hide">Show Answer</button>
                     </div>
-                    
                 </div>
                 <!-- Page Heading -->
             </div>
@@ -152,6 +144,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.js"></script>
+    <script src="js/test.js"></script>
 
 </body>
 

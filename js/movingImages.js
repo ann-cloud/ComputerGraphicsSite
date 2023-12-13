@@ -6,7 +6,6 @@ var isBuildClicked = false;
 var isStartClicked = false;
 var isStopClicked = false;
 var parallelogram;
-var timeoutIds = [];
 
 
 const canvas = document.getElementById('moving-img');
@@ -42,6 +41,7 @@ function validateData()
 
     const a = document.getElementById('a-value').value;
     const b = document.getElementById('b-value').value;
+
 
     // Validating aX
     if (isNaN(aX))
@@ -168,6 +168,19 @@ function validateData()
         alert("b can't be an empty space");
         return false;
     }
+
+    const valuesArray = [aX.trim(), aY.trim(), bX.trim(), bY.trim(), cX.trim(), cY.trim()];
+
+    const uniqueValues = new Set(valuesArray);
+    
+    const numberOfUniqueValues = uniqueValues.size;
+    
+    if (numberOfUniqueValues === 1) 
+    {
+        alert('The coordinates of parallelogram points must differ');
+        return false;
+    }
+
     return true;
 }
 
@@ -197,19 +210,6 @@ function multiplyMatrices(matrixA, matrixB) {
         }
       }
     }  
-    return result;
-}
-
-function addMatrices(matrixA, matrixB) {
-    // Initialize the result matrix with zeros
-    const result = Array(matrixA.length).fill(Array(matrixA[0].length).fill(0));
-  
-    // Perform matrix addition
-    for (let i = 0; i < matrixA.length; i++) {
-      for (let j = 0; j < matrixA[i].length; j++) {
-        result[i][j] = matrixA[i][j] + matrixB[i][j];
-      }
-    }
     return result;
 }
 
@@ -369,20 +369,15 @@ function drawParallelogram(pointA, pointB, pointC, unitScale) {
 
 function mirrorParallelogram(p, a, b) {
     const movementData = [];
-    const step1Movement = [];
-    const step2Movement = [];
-    const step3Movement = [];
-    const step4Movement = [];
-    const step5Movement = [];
     const theta = Math.atan(a);
     const translationMatrix = [
         [1, 0, 0],
-        [0, 1, -b / 50],
+        [0, 1, -b],
         [0, 0, 1]
     ];
     const translationMatrixBack = [
         [1, 0, 0],
-        [0, 1, b / 50],
+        [0, 1, b],
         [0, 0, 1]
     ];
     const mirrorToXMatrix = [
@@ -391,13 +386,13 @@ function mirrorParallelogram(p, a, b) {
         [0, 0, 1]
     ];
     const rotationMatrix = [
-        [Math.cos(theta / 50), -Math.sin(theta / 50), 0],
-        [Math.sin(theta / 50), Math.cos(theta / 50), 0],
+        [Math.cos(theta), -Math.sin(theta), 0],
+        [Math.sin(theta), Math.cos(theta), 0],
         [0, 0, 1]
     ];
     const inverseRotationMatrix = [
-        [Math.cos(theta / 50), Math.sin(theta / 50), 0],
-        [-Math.sin(theta / 50), Math.cos(theta / 50), 0],
+        [Math.cos(theta), Math.sin(theta), 0],
+        [-Math.sin(theta), Math.cos(theta), 0],
         [0, 0, 1]
     ];
     
@@ -405,46 +400,15 @@ function mirrorParallelogram(p, a, b) {
 
     for (let i = 0; i < p.length; ++i)
     {
-        step1 = [[p[i].x, p[i].y, 1]];
-        for (let j = 0; j < 50; ++j)
-        {
-            step1 = multiplyMatrices(translationMatrix, step1);
-            step1Movement.push({x: step1[0][0], y: step1[0][1]});
-        }
-        step2 = step1;
+        step1 = multiplyMatrices(translationMatrix, [[p[i].x, p[i].y, 1]]);
+        step2 = multiplyMatrices(inverseRotationMatrix, step1);
+        step3 = multiplyMatrices(mirrorToXMatrix, step2);
+        step4 = multiplyMatrices(rotationMatrix, step3);
+        step5 = multiplyMatrices(translationMatrixBack, step4);
 
-        for (let j = 0; j < 50; ++j)
-        {
-            step2 = multiplyMatrices(inverseRotationMatrix, step2);
-            step2Movement.push({x: step2[0][0], y: step2[0][1]});
-        }
-
-        step3 = step2;
-
-        step3 = multiplyMatrices(mirrorToXMatrix, step3);
-        step3Movement.push({x: step3[0][0], y: step3[0][1]});
-
-        step4 = step3;
-
-        for (let j = 0; j < 50; ++j)
-        {
-            step4 = multiplyMatrices(rotationMatrix, step4);
-            step4Movement.push({x: step4[0][0], y: step4[0][1]});
-        }
-
-        step5 = step4;
-        
-        for (let j = 0; j < 50; ++j)
-        {
-            step5 = multiplyMatrices(translationMatrixBack, step5);
-            step5Movement.push({x: step5[0][0], y: step5[0][1]});
-        }
+        movementData.push(step5);
     }
-    movementData.push(step1Movement);
-    movementData.push(step2Movement);
-    movementData.push(step3Movement);
-    movementData.push(step4Movement);
-    movementData.push(step5Movement);
+    
     return movementData;
 }
   
@@ -461,22 +425,21 @@ canvas.addEventListener('mousemove', function(event) {
         offsetX = event.offsetX - dragStart.x;
         offsetY = event.offsetY - dragStart.y;
         drawCoordinates(scale);
-        if (isBuildClicked && validateData())
+        const unitScale = calculateUnitScale(scale);
+        drawLine(unitScale);
+        
+        if (validateData())
         {
-            buildParallelogram(); 
-        }
-        if (isStartClicked && validateData() && !isStopClicked)
-        {
-            buildMirroredParallelogramFinal();
+            drawParallelogram(parallelogram[0], parallelogram[1], parallelogram[2], unitScale);
         }
     }
 });
 
-canvas.addEventListener('mouseup', function(event) {
+canvas.addEventListener('mouseup', function() {
     dragStart = null;
 });
 
-canvas.addEventListener('mouseleave', function(event) {
+canvas.addEventListener('mouseleave', function() {
     dragStart = null;
 });
 
@@ -501,110 +464,31 @@ function buildParallelogram() {
     document.getElementById('startMovement').onclick = buildMirroredParallelogramBySteps;
 }
 
-function drawMovementStep(mirroredParallelogram, stepIndex)
-{
-    let currentParallelogramIndex = 0;
-
-    function drawNextParallelogram() {
-        if (currentParallelogramIndex < 50) {
-            if (isStopClicked)
-            {
-                stopSimulation();
-                return;
-            }
-            const i = currentParallelogramIndex;
-            const unitScale = calculateUnitScale(scale);
-            drawCoordinates(scale);
-            drawLine(unitScale);
-            buildParallelogram();
-            let scaledA, scaledB, scaledC, scaledD;
-
-            if (stepIndex != 2)
-            {
-                scaledA = { x: mirroredParallelogram[stepIndex][i].x * unitScale, y: mirroredParallelogram[stepIndex][i].y * unitScale };
-                scaledB = { x: mirroredParallelogram[stepIndex][i + 50].x * unitScale, y: mirroredParallelogram[stepIndex][i + 50].y * unitScale };
-                scaledC = { x: mirroredParallelogram[stepIndex][i + 100].x * unitScale, y: mirroredParallelogram[stepIndex][i + 100].y * unitScale };
-                scaledD = { x: mirroredParallelogram[stepIndex][i + 150].x * unitScale, y: mirroredParallelogram[stepIndex][i + 150].y * unitScale };
-            }
-            else
-            {
-                scaledA = { x: mirroredParallelogram[stepIndex][0].x * unitScale, y: mirroredParallelogram[stepIndex][0].y * unitScale };
-                scaledB = { x: mirroredParallelogram[stepIndex][1].x * unitScale, y: mirroredParallelogram[stepIndex][1].y * unitScale };
-                scaledC = { x: mirroredParallelogram[stepIndex][2].x * unitScale, y: mirroredParallelogram[stepIndex][2].y * unitScale };
-                scaledD = { x: mirroredParallelogram[stepIndex][3].x * unitScale, y: mirroredParallelogram[stepIndex][3].y * unitScale };
-            }
-
-            // tempParallelogram = [scaledA, scaledB, scaledC, scaledD];
-            // Почнемо малювання
-            ctx.beginPath();
-            ctx.moveTo(scaledA.x + offsetX, -scaledA.y + offsetY);
-            ctx.lineTo(scaledB.x + offsetX, -scaledB.y + offsetY);
-            ctx.lineTo(scaledC.x + offsetX, -scaledC.y + offsetY);
-            ctx.lineTo(scaledD.x + offsetX, -scaledD.y + offsetY);
-            ctx.closePath();
-
-            // Стилізація ліній паралелограма
-            ctx.strokeStyle = 'blue';
-            ctx.lineWidth = 2;
-            ctx.stroke();
-
-            // Заповнення паралелограма кольором
-            ctx.fillStyle = 'rgba(0, 0, 255, 0.5)';
-            ctx.fill();
-
-            // Додавання підписів до точок
-            const labelOffset = 5;
-            ctx.fillStyle = 'black';
-            ctx.font = '14px Arial';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('A', scaledA.x + offsetX, -scaledA.y + offsetY - labelOffset);
-            ctx.fillText('B', scaledB.x + offsetX, -scaledB.y + offsetY - labelOffset);
-            ctx.fillText('C', scaledC.x + offsetX, -scaledC.y + offsetY - labelOffset);
-            ctx.fillText('D', scaledD.x + offsetX, -scaledD.y + offsetY - labelOffset);
-
-            // Increment the index for the next parallelogram
-            currentParallelogramIndex++;
-            requestAnimationFrame(drawNextParallelogram);
-        }
-    }
-    drawNextParallelogram();
-}
-
 function buildMirroredParallelogramBySteps()
 {
     isStartClicked = true;
     isStopClicked = false;
-    if(!isBuildClicked) {
-        alert("First you need to build paralelogram and line");
-    } else {
-        if (validateData() && isBuildClicked)
-        {
-            const a = parseFloat(document.getElementById('a-value').value);
-            const b = parseFloat(document.getElementById('b-value').value);
-            const mirroredParallelogram = mirrorParallelogram(parallelogram, a, b);
-            
-            function drawWithDelay(index) {
-                let timeoutId = setTimeout(function () {
-                    drawMovementStep(mirroredParallelogram, index);
-                }, index * 2000);
-                
-                timeoutIds.push(timeoutId);
-            }
-            
-            for (let i = 0; i < 5; ++i) {
-                drawWithDelay(i);
+    const unitScale = calculateUnitScale(scale);
+    
+    function drawWithDelay() {    
+        function drawNext() {
+            if (!isStopClicked) {
+                drawCoordinates(scale);
+                drawLine(unitScale);
+                buildMirroredParallelogramFinal();
+    
+                setTimeout(drawNext, 1000);
             }
         }
-        document.getElementById('startMovement').onclick = null;
+    
+        drawNext();
     }
+    drawWithDelay();
 }
 
 
 function buildMirroredParallelogramFinal()
 {
-    isStartClicked = true;
-    isStopClicked = false;
     if (validateData() && isBuildClicked)
     {
         const a = parseFloat(document.getElementById('a-value').value);
@@ -612,42 +496,19 @@ function buildMirroredParallelogramFinal()
         const mirroredParallelogram = mirrorParallelogram(parallelogram, a, b);
         
         const unitScale = calculateUnitScale(scale);
-        let scaledA, scaledB, scaledC, scaledD;
 
-        scaledA = { x: mirroredParallelogram[4][49].x * unitScale, y: mirroredParallelogram[4][49].y * unitScale };
-        scaledB = { x: mirroredParallelogram[4][99].x * unitScale, y: mirroredParallelogram[4][99].y * unitScale };
-        scaledC = { x: mirroredParallelogram[4][149].x * unitScale, y: mirroredParallelogram[4][149].y * unitScale };
-        scaledD = { x: mirroredParallelogram[4][199].x * unitScale, y: mirroredParallelogram[4][199].y * unitScale };
+        drawParallelogram({ x: mirroredParallelogram[0][0][0], y: mirroredParallelogram[0][0][1] }, 
+            { x: mirroredParallelogram[1][0][0], y: mirroredParallelogram[1][0][1] }, 
+            { x: mirroredParallelogram[2][0][0], y: mirroredParallelogram[2][0][1] }, 
+            unitScale);
 
-        // Почнемо малювання
-        ctx.beginPath();
-        ctx.moveTo(scaledA.x + offsetX, -scaledA.y + offsetY);
-        ctx.lineTo(scaledB.x + offsetX, -scaledB.y + offsetY);
-        ctx.lineTo(scaledC.x + offsetX, -scaledC.y + offsetY);
-        ctx.lineTo(scaledD.x + offsetX, -scaledD.y + offsetY);
-        ctx.closePath();
-
-        // Стилізація ліній паралелограма
-        ctx.strokeStyle = 'blue';
-        ctx.lineWidth = 2;
-        ctx.stroke();
-
-        // Заповнення паралелограма кольором
-        ctx.fillStyle = 'rgba(0, 0, 255, 0.5)';
-        ctx.fill();
-
-        // Додавання підписів до точок
-        const labelOffset = 5;
-        ctx.fillStyle = 'black';
-        ctx.font = '14px Arial';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText('A', scaledA.x + offsetX, -scaledA.y + offsetY - labelOffset);
-        ctx.fillText('B', scaledB.x + offsetX, -scaledB.y + offsetY - labelOffset);
-        ctx.fillText('C', scaledC.x + offsetX, -scaledC.y + offsetY - labelOffset);
-        ctx.fillText('D', scaledD.x + offsetX, -scaledD.y + offsetY - labelOffset);
+        parallelogram = [
+            { x: mirroredParallelogram[0][0][0], y: mirroredParallelogram[0][0][1] },
+            { x: mirroredParallelogram[1][0][0], y: mirroredParallelogram[1][0][1] },
+            { x: mirroredParallelogram[2][0][0], y: mirroredParallelogram[2][0][1] },
+            { x: mirroredParallelogram[3][0][0], y: mirroredParallelogram[3][0][1] }
+        ];
     }
-    document.getElementById('startMovement').onclick = null;
 }
 
 document.getElementById('xA-value').addEventListener("input", function() {
@@ -678,24 +539,16 @@ document.getElementById('b-value').addEventListener("input", function() {
 document.getElementById("scaleImage").addEventListener('input', function() {
     scale = parseFloat(this.value);
     drawCoordinates(scale);
-    if (isBuildClicked && validateData())
+    const unitScale = calculateUnitScale(scale);
+    drawLine(unitScale);
+    
+    if (validateData())
     {
-        buildParallelogram(); 
-    }
-    if (isStartClicked && validateData() && !isStopClicked)
-    {
-        buildMirroredParallelogramFinal();
+        drawParallelogram(parallelogram[0], parallelogram[1], parallelogram[2], unitScale);
     }
 });
 
 function stopSimulation()
 {
-    if(!isBuildClicked) {
-        alert("First you need to build paralelogram and line");
-    } else {
-        isStopClicked = true;
-    }
-    for (let id of timeoutIds) {
-        clearTimeout(id);
-    }
+    isStopClicked = true;
 }
